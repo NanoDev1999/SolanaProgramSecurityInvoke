@@ -12,7 +12,7 @@ const secret = JSON.parse(process.env.KEYPAIR_PRIVATE_KEY ?? "") as number[];
 const secretKey = Uint8Array.from(secret);
 const keypairFromSecretKey = web3.Keypair.fromSecretKey(secretKey);
 
-const programId = new web3.PublicKey(process.env.PROGRAM_ID_FULL_MOVIE ?? "");
+const programId = new web3.PublicKey(process.env.PROGRAM_ID_FULL_MOVIE_EDIT ?? "");
 const connection = new web3.Connection(web3.clusterApiUrl("devnet"));
 
 
@@ -32,12 +32,12 @@ const movieInstructionLayout = borsh.struct([
 
 let buffer = Buffer.alloc(1000);
 const movieTitle = `Braveheart${Math.random()*1000000}`;
-const movieDescription = "A  movie about a Scottish warrior who leads a rebellion against the cruel English tyrant in the 13th century.";
-const movieRating = 5;
+const movieDescription = "THIS MOVE SUCKS!";
+const movieRating = 1;
 
 movieInstructionLayout.encode(
     {
-        variant: 0,
+        variant: 1,
         title: movieTitle,
         rating: movieRating,
         description: movieDescription
